@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+     tools { 
+        nodejs "node 20.11.1" 
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/lucasbernardodev/vs13-jenkins-course-MeuApp.git']]])
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                bat "node -v"
+                bat 'npm install'
+                bat 'npm run build'
+            }
+        }
+        
+        stage('Run Unit Tests') {
+            steps {
+                bat 'npm run test'
+            }
+        }
+    }
+}
