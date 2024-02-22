@@ -6,3 +6,5 @@ bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
 
 console.log("teste mudança")
+
+console.log("novo")
